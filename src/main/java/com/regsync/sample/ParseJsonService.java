@@ -19,7 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SuppressWarnings("deprecation")
 @EnableScheduling
-public class ParseJson {
+public class ParseJsonService {
 	@Scheduled(cron = "0 0 * * * *", zone = "Asia/Tokyo")
 	public static void main(String[] args) {
 		StringBuilder builder = new StringBuilder();

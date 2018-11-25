@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Main {
+public class StoringDB {
 
     public static void storingDb(String[] args) throws Exception {
     	Connection conn = null;
