@@ -19,7 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SuppressWarnings("deprecation")
 @EnableScheduling
-public class ParseJsonService {
+public class ParseJson {
 	@Scheduled(cron = "0 0 * * * *", zone = "Asia/Tokyo")
 	public static void main(String[] args) {
 		StringBuilder builder = new StringBuilder();
@@ -72,6 +72,12 @@ public class ParseJsonService {
 		}
 		}
 		System.out.println(list);
+		StoringDB storingDB = new StoringDB();
+		try {
+			storingDB.storingDb(list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	//JSONをJavaオブジェクトに変換

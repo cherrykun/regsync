@@ -5,10 +5,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class StoringDB {
 
-    public static void storingDb(String[] args) throws Exception {
+    public void storingDb(ArrayList<Object> list) throws Exception {
     	Connection conn = null;
         Statement stmt = null;
         ResultSet rset = null;
@@ -39,7 +40,7 @@ public class StoringDB {
             }
 
             //INSERT文の実行
-            sql = "INSERT INTO jdbc_test VALUES (1, 'AAA')";
+            sql = "INSERT INTO public.user VALUES (1, 'AAA')";
             stmt.executeUpdate(sql);
             conn.commit();
         }
@@ -50,16 +51,19 @@ public class StoringDB {
             e.printStackTrace();
         }
         finally {
-        	//接続の切断
-            try {
-                if(rset != null)rset.close();
-                if(stmt != null)stmt.close();
-                if(conn != null)conn.close();
-            }
-            catch (SQLException e){
-                e.printStackTrace();
-            }
-
+        	disconnectDb(rset, stmt, conn);
+        }
+    }
+    
+    private static void disconnectDb(ResultSet rset, Statement stmt, Connection conn) {
+    	//接続の切断
+        try {
+            if(rset != null)rset.close();
+            if(stmt != null)stmt.close();
+            if(conn != null)conn.close();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
         }
     }
 }
