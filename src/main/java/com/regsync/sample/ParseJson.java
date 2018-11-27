@@ -58,7 +58,7 @@ public class ParseJson {
 					System.out.println("line:" + line);
 					//JSONからJavaオブジェクトに変換
 					Object obj = getObjFromJSON(line);
-					System.out.println(obj);
+					System.out.println("obj:" + obj);
 					//リストに格納
 					list.add(obj);
 				}
@@ -71,10 +71,10 @@ public class ParseJson {
 			e.printStackTrace();
 		}
 		}
-		System.out.println(list);
-		StoringDB storingDB = new StoringDB();
+		System.out.println("list:" + list);
+		StoringDbService storingDbService = new StoringDbService();
 		try {
-			storingDB.storingDb(list);
+			storingDbService.storingDbService(list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

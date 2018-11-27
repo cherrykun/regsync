@@ -6,10 +6,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
-public class StoringDB {
+public class StoringDbService {
 
-    public void storingDb(ArrayList<Object> list) throws Exception {
+    public void storingDbService(ArrayList<Object> list) throws Exception {
+    	UserDao dao = new UserDao();
+    	List<UserDto> users = dao.findAllUser();
+    	for(UserDto user:users) {
+    	System.out.println("id:" + user.getId());
+    	System.out.println("name:" + user.getName());
+    	}
+    	
     	Connection conn = null;
         Statement stmt = null;
         ResultSet rset = null;
@@ -40,7 +48,7 @@ public class StoringDB {
             }
 
             //INSERT文の実行
-            sql = "INSERT INTO public.user VALUES (1, 'AAA')";
+            sql = "INSERT INTO public.user VALUES (2, 'BBB')";
             stmt.executeUpdate(sql);
             conn.commit();
         }
